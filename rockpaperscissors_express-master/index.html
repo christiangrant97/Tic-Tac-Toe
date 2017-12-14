@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Rock paper scissors</h1>
+
+    <button id="rock" type="button" name="button">Rock</button>
+    <button id="paper" type="button" name="button">Paper</button>
+    <button id="scissors" type="button" name="button">Scissors</button>
+
+    <h2 id="Results"></h2>
+
+    <script type="text/javascript">
+      console.log('main js')
+      //Make rock papers and siccosrs
+
+      document.getElementById('rock').addEventListener('click',()=>{
+        console.log('rock')
+        play('rock');
+      });
+
+      document.getElementById('scissors').addEventListener('click',()=>{
+        console.log('scissors')
+        play('scissors');
+      });
+
+      document.getElementById('paper').addEventListener('click',()=>{
+        console.log('paper')
+        //
+        play('paper');
+      });
+
+      function play(x){
+
+        //Generate a random number between 0-2 that represents the cpu's choice
+        var cpuGame = Math.floor(Math.random()*3)
+
+        //switch to change the value of cpu for a String
+        switch (cpuGame){
+          case 0:
+            cpuGame = 'rock';
+            break;
+          case 1:
+            cpuGame = 'paper';
+            break;
+          case 2:
+            cpuGame = 'scissors';
+            break;
+          default: console.log("err");
+        }
+
+        //Console log computer pick
+        console.log("cpuGame = "+cpuGame)
+
+        //Evaluate different choices
+
+        //Evaluate draw
+        if(cpuGame == x){
+          document.getElementById('Results').innerHTML = "Draw! You both picked "+x
+        }
+        //evaluate win
+        if(((cpuGame == 'paper') && (x=='rock'))||((cpuGame == 'rock') && (x=='scissors'))||((cpuGame == 'scissors') && (x=='paper'))){
+          document.getElementById('Results').innerHTML = "You lost! You picked "+x+" and the computer picked "+cpuGame;
+        }
+        //evaluate loss
+        if(((cpuGame == 'paper') && (x=='scissors'))||((cpuGame == 'rock') && (x=='paper'))||((cpuGame == 'scissors') && (x=='rock'))){
+          document.getElementById('Results').innerHTML = "You win! You picked "+x+" and the computer picked "+cpuGame;
+        }
+      }
+    </script>
+  </body>
+</html>
